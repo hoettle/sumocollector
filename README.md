@@ -1,6 +1,8 @@
 # SumoLogic Collector
 Minimal SumoLogic Collector Docker Image
 
+https://hub.docker.com/r/unlockd/sumocollector/
+
 ### What's different to the official sumologic/collector image?
 
 - Uses `tini` to start the java process
