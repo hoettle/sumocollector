@@ -8,3 +8,9 @@ https://hub.docker.com/r/unlockd/sumocollector/
 - Uses `tini` to start the java process
 - Minimalist. Just enough to Sumo Collector running in a container. We expect you to add/mount `/etc/sumo.conf` and source files in your own way.
 - Optionally polling a file exists before starting the Collector. Useful in many scenarios.
+
+### Basic Usage
+
+```
+docker run -it --rm -v "$(pwd)/sumo.conf:/etc/sumo.conf:ro" unlockd/sumocollector
+```
