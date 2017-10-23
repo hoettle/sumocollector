@@ -8,10 +8,13 @@ LATEST_VERSION=$(grep "wrapper.java.classpath.1" ${SUMO_HOME}/config/wrapper.con
 # check for the expected command
 if [ "$1" = 'start' ]; then
 
-  while ! test -f "/etc/sumo.conf"; do
-    echo "Waiting for /etc/sumo.conf to be available."
-    sleep 10
-  done
+  if [ -n "${INCOMING_SUMO_CONF-}" ]; then
+    while ! test -f "${INCOMING_SUMO_CONF}"; do
+      echo "Waiting for ${INCOMING_SUMO_CONF} to be available."
+      sleep 10
+    done
+    mv "${INCOMING_SUMO_CONF}" /etc/sumo.conf
+  fi
 
   # MUST use "exec" to get rid of bash process and let tini directly manages the java process
   exec /usr/bin/java \
